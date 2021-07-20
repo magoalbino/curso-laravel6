@@ -1,0 +1,14 @@
+FROM wyveo/nginx-php-fpm:latest
+WORKDIR /usr/share/nginx
+RUN rm -rf /usr/share/ngix/html
+RUN ln -s public html
+
+
+
+#comandos para resolver treta do windows:
+# RUN mkdir -p storage/framework/sessions \
+#     mkdir -p storage/framework/cache \
+#     mkdir -p storage/framework/views \
+#     mkdir -p storage/logs
+#
+# RUN chmod -R 777 storage

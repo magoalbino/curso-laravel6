@@ -1,0 +1,57 @@
+version: '3.1'
+networks:
+    default:
+        driver: bridge
+services:
+
+    db:
+        container_name: marketplace_db
+        image: postgres
+        environment:
+            POSTGRES_DB: 'marketplace'
+            POSTGRES_PASSWORD: 'root'
+            POSTGRES_USER: 'postgres'
+        ports:
+            - '5432:5432'
+        volumes:
+            - ./db/marketplace/pgdata:/var/lib/postgresql
+            
+    marketplace:
+        container_name: marketplace_laravel
+        build: ./marketplace
+        ports:
+            - 8080:80
+        volumes:
+            - ./marketplace:/usr/share/nginx
+            - ./nginx:/etc/nginx/conf.d
+        environment:
+            APP_ENV: 'dev'
+            APP_DEBUG: 'true'
+            #APP_URL: 'http://localhost:8080'
+            DATABASE_DRIVER: 'pdo_pgsql'
+            DATABASE_HOST: db
+            DATABASE_PORT: '5432'
+            DATABASE_NAME: 'marketplace'
+            DATABASE_USER: 'postgres'
+            DATABASE_PASSWORD: 'root'
+        restart: always
+        depends_on: 
+            - db
+    
+    #db:
+        #image: mysql:5.7.22
+        #para windows:
+        #command: --innodb-use-native-aio=0
+        #restart: always
+        #volumes:
+            #- .docker/dbdata:/var/lib/mysql
+        #environment: 
+            #MYSQL_DATABASE: marketplace
+            #MYSQL_USER: root
+            #MYSQL_PASSWORD: root
+            #MYSQL_ROOT_PASSWORD: root
+        #networks:
+            #- app
+        #ports:
+            #- "3306:3306"
+        
