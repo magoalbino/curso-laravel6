@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class StoreController extends Controller
 {
     public function index() {
-        $stores = \App\Store::paginate(10);
+        $stores = Store::paginate(10);
 
         return view('admin.stores.index', compact('stores'));
     }
@@ -25,8 +25,9 @@ class StoreController extends Controller
     {
         $data = $request->all();
 
-        $user = User::find($data['user']);
-        $store = $user->store()->create($data);
+        $user = auth()->user();
+
+        $user->store()->create($data);
 
         flash('Loja Criada com Sucesso!')->success();
 
