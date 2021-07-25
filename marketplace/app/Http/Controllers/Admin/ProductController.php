@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Product;
 
@@ -46,11 +47,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $data = $request->all();
 
-        $store = \App\Store::find($data['store']);
+        $store = auth()->user()->store;
         $store->products()->create($data);
 
         flash('Produto criado com sucesso!')->success();
@@ -88,7 +89,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         $data = $request->all();
 
