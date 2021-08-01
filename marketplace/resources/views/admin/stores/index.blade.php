@@ -2,7 +2,7 @@
 
 @section('content')
     @if(!$store)
-        <h2>Você ainda não possui nenhuma loja criada!</h2>
+        <h3>Você ainda não possui nenhuma loja criada!</h3>
         <a href="{{route('admin.stores.create')}}" class="btn btn-lg btn-success">Criar Loja</a>
     @else
     <table class="table table-striped">

@@ -24,3 +24,20 @@ https://laravel.com/docs/6.x/validation#available-validation-rules
 Mensagens de validação:
 https://laravel.com/docs/6.x/validation#working-with-error-messages
 
+### Comandos aprendidos:
+
+Criando controllers:
+- php artisan make:controller pasta/nomearquivo --resource
+- - o artributo 'resource' cria as rotas de todos os métodos rest, e já deixa a estrutura da controller pronta para eles.
+
+Artisan UI
+- composer require laravel/ui (php artisan ui --help)
+- - cria automaticamente as views relacionadas a autenticação: php artisan ui:auth;
+    
+Utiliando o elloquent para criar registros no banco:
+- Cria um produto contendo o id (FK) de uma loja:
+- - $store->products()->create($data)
+    
+- Cria um produto com ligação de N para N com categorias
+- - $product = $store->products()->create($data); //produto criado
+- - $product->categories()->sync($data['categories']); //sync sincroniza os IDs na tabela associativa
