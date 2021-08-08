@@ -98,6 +98,7 @@
       <path value="$PROJECT_DIR$/marketplace/vendor/symfony/http-foundation" />
       <path value="$PROJECT_DIR$/marketplace/vendor/laracasts/flash" />
       <path value="$PROJECT_DIR$/marketplace/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/marketplace/vendor/spatie/laravel-sluggable" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

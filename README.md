@@ -24,6 +24,9 @@ https://laravel.com/docs/6.x/validation#available-validation-rules
 Mensagens de validação:
 https://laravel.com/docs/6.x/validation#working-with-error-messages
 
+Criação automática de slugs:
+https://github.com/spatie/laravel-sluggable
+
 ### Comandos aprendidos:
 
 Criando controllers:
@@ -41,3 +44,15 @@ Utiliando o elloquent para criar registros no banco:
 - Cria um produto com ligação de N para N com categorias
 - - $product = $store->products()->create($data); //produto criado
 - - $product->categories()->sync($data['categories']); //sync sincroniza os IDs na tabela associativa
+    
+### Outros
+
+- Validando request com outros tipos de campos. Exemplos:
+- - Array nomeado  
+- - HTML: input type="text" name="profile[name]" | 
+    input type="text" name="profile[email]"
+- - Request: 'profile.name' => 'required' | 'profile.email' => 'required|email'
+    
+- - Array numerado (input file múltiplo)
+- - HTML: input type="file" name="arquivos[]"
+- - Request: 'arquivos.*' => 'image'    
