@@ -68,21 +68,21 @@
             <label for="">Categorias</label>
             <select name="categories[]" id="" class="form-control" multiple>
                 @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    <option value="{{$category->id}}" @if(old('categories') && in_array($category->id, old('categories'))) selected @endif>
+                        {{$category->name}}
+                    </option>
                 @endforeach
             </select>
         </div>
 
         <div class="form-group">
             <label for="">Fotos do Produto</label>
-            <input type="file" name="photos[]" class="form-control" multiple>
-        </div>
-
-        <div class="form-group">
-            <label for="">Slug</label>
-            <input type="text"
-                   name="slug"
-                   class="form-control">
+            <input type="file" name="photos[]" class="form-control @error('photos.*') is-invalid @enderror" multiple>
+            @error('photos.*')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
 
         <div>
