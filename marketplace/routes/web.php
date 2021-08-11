@@ -13,7 +13,6 @@
 
 //use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
 
 //    $user = \App\User::find(10);
 //    $store = $user->store()->create([
@@ -43,23 +42,19 @@ Route::get('/', function () {
 //        'description' => null,
 //        'slug' => 'notebooks'
 //    ]);
+// Adicionar um produto para uma categoria ou vice-versa
 
-    // Adicionar um produto para uma categoria ou vice-versa
-
-    /**
-     * Attach;
-     * Detach;
-     * Sync (vai sempre deixar a tabela igual ao array passado no parâmetro).
-     */
+/**
+ * Attach;
+ * Detach;
+ * Sync (vai sempre deixar a tabela igual ao array passado no parâmetro).
+ */
 
 //    $product = \App\Product::find(49);
 //    dd($product->categories()->sync([3]));
 
-
-    return view('welcome');
-});
-
-
+Route::get('/', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function(){
     Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
@@ -87,8 +82,6 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 /*
